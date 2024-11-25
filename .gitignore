@@ -60,3 +60,17 @@ fastlane/report.xml
 fastlane/Preview.html
 fastlane/screenshots/**/*.png
 fastlane/test_output
+
+## Mac 
+.DS_Store
+._.DS_Store
+**/.DS_Store
+**/._.DS_Stor
+## Xcode and earlier
+*.xcscmblueprint
+*.xccheckout
+*.xcuserdata
+*.xcuserstate
+**/.xcuserdata
+### Xcode Patch ###
+*.xcodeproj/*e
