@@ -22,7 +22,7 @@ struct KioskViewController_Preview: PreviewProvider {
     static var previews: some View {
         KioskViewController_Presentable()
     }
-    
+    // 메뉴 화면에 대한 로직
     struct KioskViewController_Presentable: UIViewControllerRepresentable {
         func makeUIViewController(context: Context) -> some UIViewController {
             KioskViewController()
