@@ -13,8 +13,8 @@ class KioskViewController: UIViewController {
         MenuItem(name: "에스프레소", englishName: "Espresso", price: 3700, category: .coffee),
         MenuItem(name: "아메리카노", englishName: "Americano", price: 4000, category: .coffee),
         MenuItem(name: "카페라떼", englishName: "Cafe Latte", price: 4500, category: .coffee),
-        MenuItem(name: "티라미수", englishName: "Tiramisu", price: 6500, category: .desert),
-        MenuItem(name: "초코케이크", englishName: "Chocolate Cake", price: 6000, category: .desert),
+        MenuItem(name: "티라미수", englishName: "Tiramisu", price: 6500, category: .dessert),
+        MenuItem(name: "초코케이크", englishName: "Chocolate Cake", price: 6000, category: .dessert),
         MenuItem(name: "레몬에이드", englishName: "Lemon Ade", price: 5500, category: .ade),
         MenuItem(name: "텀블러", englishName: "Tumbler", price: 28000, category: .products)
     ]
@@ -43,7 +43,7 @@ class KioskViewController: UIViewController {
     }
     
     private func setupUI() {
-        view.backgroundColor = .white
+        view.backgroundColor = .gray0
         view.addSubview(segmentedControl)
         view.addSubview(tableView)
         

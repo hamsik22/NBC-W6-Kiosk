@@ -1,6 +1,6 @@
 enum MenuCategory: String, CaseIterable {
     case coffee = "Coffee"
-    case desert = "Desert"
+    case dessert = "Dessert"
     case ade = "Ade"
     case products = "Products"
 }
