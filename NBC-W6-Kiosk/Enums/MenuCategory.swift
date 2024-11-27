@@ -1,8 +1,8 @@
 import Foundation
 
 enum MenuCategory: String, CaseIterable {
-    case coffee = "Coffee"
-    case dessert = "Dessert"
-    case ade = "Ade"
-    case products = "Products"
+    case Hot = "Hot"
+    case Iced = "Iced"
+    case Ade = "Ade"
+    case Dessert = "Dessert"
 }
