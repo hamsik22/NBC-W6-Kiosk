@@ -6,12 +6,11 @@
 //  Updated by 김형석 on 11/27/24.
  
 import UIKit
-import SwiftUI
 
 class KioskViewController: UIViewController, Observer {
     var menu: Menu!
     
-    private var filteredMenuItems: [DefaultProduct] = []
+    private var filteredMenuItems: [Product] = []
     
     private let segmentedControl: UISegmentedControl = {
         let control = UISegmentedControl(items: MenuCategory.allCases.map { $0.rawValue })
@@ -29,12 +28,14 @@ class KioskViewController: UIViewController, Observer {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        menu = DefaultMenu()
+        menu = Menu()
+        // View가 그려지기 전에 json 데이터 디코팅 후 menu 모델에 저장
+        menu.list = decode(from: fetchDataFromJSONFile()!) ?? []
         menu.addObserver(self)
         
         setupUI()
         setupTableView()
-        menu.notifySelectedMenu(.iced)
+        menu.notifySelectedMenu(.hot)
     }
     
     private func setupUI() {
@@ -68,7 +69,7 @@ class KioskViewController: UIViewController, Observer {
         menu.notifySelectedMenu(selectedCategory)
     }
     
-    func fetchMenu(_ filteredList: [DefaultProduct]) {
+    func fetchMenu(_ filteredList: [Product]) {
         filteredMenuItems = filteredList
         tableView.reloadData()
     }
@@ -93,7 +94,32 @@ extension KioskViewController: UITableViewDelegate, UITableViewDataSource {
     }
 }
 
+extension KioskViewController {
+    
+    /// JSON 파일을 불러와 Data로 변환하는 함수
+    /// - Returns: JSON Data
+    private func fetchDataFromJSONFile() -> Data? {
+        guard let path = Bundle.main.path(forResource: "MenuData", ofType: "json") else { return nil }
+        guard let jsonString = try? String(contentsOfFile: path) else { return nil }
+        
+        return jsonString.data(using: .utf8)
+    }
+    
+    
+    /// JSON 파일 기반으로 변환된 데이터를 Product 구초체 형식으로 디코딩하는 함수
+    /// - Parameter data: JSON 데이터
+    /// - Returns: 구조체로 디코딩 된 Product 배열
+    private func decode(from data: Data) -> [Product]? {
+        guard let productList = try? JSONDecoder().decode([Product].self, from: data) else { return nil }
+        
+        return productList
+    }
+}
+
+
 #if DEBUG
+
+import SwiftUI
 
 struct KioskViewController_Preview: PreviewProvider {
     static var previews: some View {

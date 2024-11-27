@@ -85,7 +85,7 @@ class MenuItemCell: UITableViewCell {
         ])
     }
     
-    func configure(with item: DefaultProduct) {
+    func configure(with item: Product) {
         nameLabel.text = item.name
         englishNameLabel.text = item.englishName
         priceLabel.text = "\(item.price)원"
