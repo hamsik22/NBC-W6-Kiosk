@@ -4,7 +4,7 @@
 //
 //  Created by 황석현 on 11/25/24.
 //  Updated by 김형석 on 11/27/24.
- 
+
 import UIKit
 import SwiftUI
 
@@ -28,6 +28,12 @@ class KioskViewController: UIViewController, Observer {
         return tableView
     }()
     
+    private let orderList: OrderList = {
+        let view = OrderList()
+        view.backgroundColor = .blue
+        return view
+    }()
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         menu = DefaultMenu()
@@ -36,6 +42,8 @@ class KioskViewController: UIViewController, Observer {
         shoppingBasket = DefaultShoppingBasket()
         shoppingBasket.addObserver(self)
         
+        tableView.backgroundColor = .red
+        
         setupUI()
         setupTableView()
         menu.notifySelectedMenu(.coffee)
@@ -43,8 +51,10 @@ class KioskViewController: UIViewController, Observer {
     
     private func setupUI() {
         view.backgroundColor = .gray0
-        view.addSubview(segmentedControl)
-        view.addSubview(tableView)
+        view.addSubview(segmentedControl) // 메뉴 카테고리
+        view.addSubview(tableView) // 메뉴선택
+        orderList.setupOrderListView()
+        view.addSubview(orderList)
         
         segmentedControl.addTarget(self, action: #selector(segmentedControlValueChanged), for: .valueChanged)
         
@@ -56,8 +66,13 @@ class KioskViewController: UIViewController, Observer {
             tableView.topAnchor.constraint(equalTo: segmentedControl.bottomAnchor, constant: 16),
             tableView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
             tableView.trailingAnchor.constraint(equalTo: view.trailingAnchor),
-            tableView.bottomAnchor.constraint(equalTo: view.bottomAnchor)
+            tableView.bottomAnchor.constraint(equalTo: view.centerYAnchor)
         ])
+        orderList.snp.makeConstraints {
+            $0.top.equalTo(tableView.snp.bottom)
+            $0.width.equalToSuperview()
+            $0.bottom.equalToSuperview().offset(-50)
+        }
     }
     
     private func setupTableView() {
