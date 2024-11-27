@@ -9,6 +9,8 @@ import UIKit
 
 class KioskViewController: UIViewController, Observer {
     var menu: Menu!
+    // 결제완료 후 현재 화면에 보여지고있는 메뉴 tableView를 reload하기 위해 선언
+    var currentMenu: MenuCategory = .hot
     
     private var filteredMenuItems: [Product] = []
     private var shoppingBasketItems: [Product] = []
@@ -36,7 +38,7 @@ class KioskViewController: UIViewController, Observer {
         
         setupUI()
         setupTableView()
-        menu.notifySelectedMenu(.hot)
+        menu.notifySelectedMenu(currentMenu)
     }
     
     private func setupUI() {
@@ -68,6 +70,7 @@ class KioskViewController: UIViewController, Observer {
         let selectedCategory = MenuCategory.allCases[sender.selectedSegmentIndex]
         
         menu.notifySelectedMenu(selectedCategory)
+        currentMenu = selectedCategory
     }
     
     func fetchMenu(_ filteredList: [Product]) {
