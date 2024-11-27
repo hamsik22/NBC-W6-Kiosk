@@ -85,9 +85,10 @@ class MenuItemCell: UITableViewCell {
         ])
     }
     
-    func configure(with item: MenuItem) {
+    func configure(with item: DefaultProduct) {
         nameLabel.text = item.name
         englishNameLabel.text = item.englishName
         priceLabel.text = "\(item.price)원"
+        // TODO: item.stock == 0일때 sould out 표시 구현해주면 됩니다.
     }
 }
