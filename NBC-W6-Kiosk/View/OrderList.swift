@@ -5,8 +5,8 @@
 //  Created by 황석현 on 11/27/24.
 //
 
-import Foundation
 import UIKit
+import SnapKit
 
 class OrderListView: UIView {
     
@@ -34,25 +34,24 @@ class OrderListView: UIView {
         [noOrderText, orderList, totalOrderText]
             .forEach{ addSubview($0) }
         
-        // TODO: 레이아웃 설정
-        NSLayoutConstraint.activate([
-            // noOrderText의 위치
-            noOrderText.topAnchor.constraint(equalTo: topAnchor, constant: 20),
-            noOrderText.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 16),
-            noOrderText.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -16),
+        noOrderText.snp.makeConstraints {
+            $0.top.equalTo(20)
+            $0.centerY.equalToSuperview()
+            $0.width.equalToSuperview()
             
-            // orderList의 위치
-            orderList.topAnchor.constraint(equalTo: noOrderText.bottomAnchor, constant: 20),
-            orderList.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 16),
-            orderList.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -16),
-            orderList.bottomAnchor.constraint(equalTo: totalOrderText.topAnchor, constant: -20),
-            
-            // totalOrderText의 위치
-            totalOrderText.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 16),
-            totalOrderText.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -16),
-            totalOrderText.bottomAnchor.constraint(equalTo: bottomAnchor, constant: -20),
-            totalOrderText.heightAnchor.constraint(equalToConstant: 50)
-        ])
+        }
+        
+        orderList.snp.makeConstraints {
+            $0.top.equalToSuperview()
+            $0.width.equalToSuperview()
+            $0.bottom.equalTo(20)
+        }
+        
+        totalOrderText.snp.makeConstraints {
+            $0.width.equalToSuperview()
+            $0.height.equalTo(20)
+            $0.bottom.equalToSuperview()
+        }
         
     }
     
@@ -61,20 +60,30 @@ class OrderListView: UIView {
         let amountLabel = UILabel()
         amountLabel.text = "총 0/20개"
         amountLabel.textAlignment = .right
-        amountLabel.translatesAutoresizingMaskIntoConstraints = false
         
         let priceLabel = UILabel()
         priceLabel.text = "0원"
         priceLabel.textAlignment = .right
-        priceLabel.translatesAutoresizingMaskIntoConstraints = false
         
         totalOrderText.axis = .horizontal
         totalOrderText.distribution = .equalSpacing
         totalOrderText.alignment = .trailing
-        totalOrderText.translatesAutoresizingMaskIntoConstraints = false
         
         [amountLabel, priceLabel]
             .forEach{ totalOrderText.addSubview($0) }
+        
+        priceLabel.snp.makeConstraints {
+            $0.right.equalToSuperview()
+            $0.width.equalTo(100)
+            $0.height.equalToSuperview()
+        }
+        
+        amountLabel.snp.makeConstraints {
+            $0.right.equalTo(priceLabel.snp.left)
+            $0.width.equalTo(80)
+            $0.height.equalToSuperview()
+        }
+        
     }
 }
 
