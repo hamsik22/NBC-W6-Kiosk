@@ -11,6 +11,7 @@ class KioskViewController: UIViewController, Observer {
     var menu: Menu!
     
     private var filteredMenuItems: [Product] = []
+    private var shoppingBasketItems: [Product] = []
     
     private let segmentedControl: UISegmentedControl = {
         let control = UISegmentedControl(items: MenuCategory.allCases.map { $0.rawValue })
@@ -87,6 +88,11 @@ extension KioskViewController: UITableViewDelegate, UITableViewDataSource {
         
         cell.configure(with: filteredMenuItems[indexPath.row])
         return cell
+    }
+    
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        // 메뉴 tableViewCell이 탭 됐을 때 tableView의 indexPath.row를 사용해 선택된 Product를 filteredMenuItems에서 찾아 shoppingBasketItems에 추가
+        shoppingBasketItems.append(filteredMenuItems[indexPath.row])
     }
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
