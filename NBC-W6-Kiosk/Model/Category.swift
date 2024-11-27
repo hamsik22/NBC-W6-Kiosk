@@ -7,19 +7,9 @@
 
 import Foundation
 
-enum CategoryType: String {
-    case coffee
-    case desert
-    case ade
-    case product
-}
-
-struct Category {
-    private let type: CategoryType
-    private var list: [Product]
-    
-    init(type: CategoryType, list: [Product]) {
-        self.type = type
-        self.list = list
-    }
+enum Category: String, CaseIterable {
+    case coffee = "Coffee"
+    case desert = "Desert"
+    case ade = "Ade"
+    case products = "Products"
 }
