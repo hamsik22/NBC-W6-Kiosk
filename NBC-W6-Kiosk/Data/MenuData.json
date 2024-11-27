@@ -1,0 +1,250 @@
+[
+  {
+    "category": "Hot",
+    "name": "에스프레소",
+    "englishName": "Espresso",
+    "price": 3700,
+    "thumbnailImageString": "에스프레소",
+    "stock": 123
+  },
+  {
+    "category": "Hot",
+    "name": "카페 아메리카노",
+    "englishName": "Caffe Americano",
+    "price": 4500,
+    "thumbnailImageString": "카페 아메리카노",
+    "stock": 342
+  },
+  {
+    "category": "Hot",
+    "name": "카페 라떼",
+    "englishName": "Caffe Latte",
+    "price": 5000,
+    "thumbnailImageString": "카페 라떼",
+    "stock": 254
+  },
+  {
+    "category": "Hot",
+    "name": "카페 모카",
+    "englishName": "Caffe Mocha",
+    "price": 5500,
+    "thumbnailImageString": "카페 모카",
+    "stock": 487
+  },
+  {
+    "category": "Hot",
+    "name": "카푸치노",
+    "englishName": "Cappucino",
+    "price": 5000,
+    "thumbnailImageString": "카푸치노",
+    "stock": 302
+  },
+  {
+    "category": "Hot",
+    "name": "카라멜 마키아또",
+    "englishName": "Caramel Macchiato",
+    "price": 5900,
+    "thumbnailImageString": "카라멜 마키아또",
+    "stock": 195
+  },
+  {
+    "category": "Hot",
+    "name": "디카페인 아메리카노",
+    "englishName": "DECAFE Caffe Americano",
+    "price": 4800,
+    "thumbnailImageString": "디카페인 아메리카노",
+    "stock": 87
+  },
+  {
+    "category": "Hot",
+    "name": "디카페인 카페 라떼",
+    "englishName": "DECAFE Caffe Latte",
+    "price": 5300,
+    "thumbnailImageString": "디카페인 카페 라떼",
+    "stock": 430
+  },
+  {
+    "category": "Hot",
+    "name": "디카페인 카라멜 마키아또",
+    "englishName": "DECAFE Caramel Macchiato",
+    "price": 5300,
+    "thumbnailImageString": "디카페인 카라멜 마키아또",
+    "stock": 210
+  },
+  {
+    "category": "Iced",
+    "name": "아이스 카페 아메리카노",
+    "englishName": "Iced Caffe Americano",
+    "price": 4500,
+    "thumbnailImageString": "아이스 카페 아메리카노",
+    "stock": 390
+  },
+  {
+    "category": "Iced",
+    "name": "아이스 카페 라떼",
+    "englishName": "Iced Caffe Latte",
+    "price": 5000,
+    "thumbnailImageString": "아이스 카페 라떼",
+    "stock": 258
+  },
+  {
+    "category": "Iced",
+    "name": "아이스 카페 모카",
+    "englishName": "Iced Caffe Mocha",
+    "price": 5500,
+    "thumbnailImageString": "아이스 카페 모카",
+    "stock": 400
+  },
+  {
+    "category": "Iced",
+    "name": "아이스 카푸치노",
+    "englishName": "Iced Cappucino",
+    "price": 5000,
+    "thumbnailImageString": "아이스 카푸치노",
+    "stock": 98
+  },
+  {
+    "category": "Iced",
+    "name": "아이스 카라멜 마키아또",
+    "englishName": "Iced Caramel Macchiato",
+    "price": 5900,
+    "thumbnailImageString": "아이스 카라멜 마키아또",
+    "stock": 276
+  },
+  {
+    "category": "Iced",
+    "name": "디카페인 아이스 아메리카노",
+    "englishName": "DECAFE Iced Caffe Americano",
+    "price": 4800,
+    "thumbnailImageString": "디카페인 아이스 아메리카노",
+    "stock": 159
+  },
+  {
+    "category": "Iced",
+    "name": "디카페인 아이스 카페 라떼",
+    "englishName": "DECAFE Iced Caffe Latte",
+    "price": 5300,
+    "thumbnailImageString": "디카페인 아이스 카페 라떼",
+    "stock": 222
+  },
+  {
+    "category": "Iced",
+    "name": "디카페인 아이스 카라멜 마키아또",
+    "englishName": "DECAFE Iced Caramel Macchiato",
+    "price": 5300,
+    "thumbnailImageString": "디카페인 아이스 카라멜 마키아또",
+    "stock": 310
+  },
+  {
+    "category": "Ade",
+    "name": "밀크 티",
+    "englishName": "Milk Tea",
+    "price": 5900,
+    "thumbnailImageString": "밀크 티",
+    "stock": 45
+  },
+  {
+    "category": "Ade",
+    "name": "레몬 캐모마일 티",
+    "englishName": "Lemon Chamomile Tea",
+    "price": 5900,
+    "thumbnailImageString": "레몬 캐모마일 티",
+    "stock": 390
+  },
+  {
+    "category": "Ade",
+    "name": "자몽 에이드",
+    "englishName": "Grapefruit Ade",
+    "price": 6000,
+    "thumbnailImageString": "자몽 에이드",
+    "stock": 280
+  },
+  {
+    "category": "Ade",
+    "name": "딸기 레몬에이드",
+    "englishName": "Strawberry Lemon Ade",
+    "price": 6000,
+    "thumbnailImageString": "딸기 레몬에이드",
+    "stock": 100
+  },
+  {
+    "category": "Ade",
+    "name": "라임 에이드",
+    "englishName": "Lime Ade",
+    "price": 6000,
+    "thumbnailImageString": "라임 에이드",
+    "stock": 487
+  },
+  {
+    "category": "Ade",
+    "name": "망고 블렌디드",
+    "englishName": "Banana Blended",
+    "price": 6500,
+    "thumbnailImageString": "망고 블렌디드",
+    "stock": 150
+  },
+  {
+    "category": "Ade",
+    "name": "망고 블렌디드",
+    "englishName": "Mango Blended",
+    "price": 6500,
+    "thumbnailImageString": "망고 블렌디드",
+    "stock": 120
+  },
+  {
+    "category": "Dessert",
+    "name": "고구마 카스텔라 케이크",
+    "englishName": "Sweet Potato Castella Cake",
+    "price": 7100,
+    "thumbnailImageString": "고구마 카스텔라 케이크",
+    "stock": 5
+  },
+  {
+    "category": "Dessert",
+    "name": "가나슈 레이어 케이크",
+    "englishName": "Ganache Layer Cake",
+    "price": 6900,
+    "thumbnailImageString": "가나슈 레이어 케이크",
+    "stock": 0
+  },
+  {
+    "category": "Dessert",
+    "name": "클라우드 치즈 케이크",
+    "englishName": "Cloud Cheese Cake",
+    "price": 6900,
+    "thumbnailImageString": "클라우드 치즈 케이크",
+    "stock": 20
+  },
+  {
+    "category": "Dessert",
+    "name": "티라미수 케이크",
+    "englishName": "Tiramisu Cake",
+    "price": 6000,
+    "thumbnailImageString": "티라미수 케이크",
+    "stock": 30
+  },
+  {
+    "category": "Dessert",
+    "name": "탕종 플레인 베이글",
+    "englishName": "Plain Bagel",
+    "price": 3000,
+    "thumbnailImageString": "탕종 플레인 베이글",
+    "stock": 20
+  },
+  {
+    "category": "Dessert",
+    "name": "치킨 베이컨 랩",
+    "englishName": "Chicken Bacon Wrap",
+    "price": 5200,
+    "thumbnailImageString": "치킨 베이컨 랩",
+    "stock": 10
+  },
+  {
+    "category": "Dessert",
+    "name": "트러플 머쉬룸 수프",
+    "englishName": "Truffle Mushroom Soup",
+    "price": 4200,
+    "thumbnailImageString": "트러플 머쉬룸 수프",
+    "stock": 50
+  }
+]
