@@ -8,7 +8,6 @@
 
 /* Begin PBXBuildFile section */
 		C399C4DA2CF700F700DA95DA /* SnapKit in Frameworks */ = {isa = PBXBuildFile; productRef = C399C4D92CF700F700DA95DA /* SnapKit */; };
-		C399C4DC2CF700F700DA95DA /* SnapKit-Dynamic in Frameworks */ = {isa = PBXBuildFile; productRef = C399C4DB2CF700F700DA95DA /* SnapKit-Dynamic */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -42,7 +41,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				C399C4DA2CF700F700DA95DA /* SnapKit in Frameworks */,
-				C399C4DC2CF700F700DA95DA /* SnapKit-Dynamic in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -86,7 +84,6 @@
 			name = "NBC-W6-Kiosk";
 			packageProductDependencies = (
 				C399C4D92CF700F700DA95DA /* SnapKit */,
-				C399C4DB2CF700F700DA95DA /* SnapKit-Dynamic */,
 			);
 			productName = "NBC-W6-Kiosk";
 			productReference = C3D5B8532CF4428A00B92E71 /* NBC-W6-Kiosk.app */;
@@ -372,11 +369,6 @@
 			isa = XCSwiftPackageProductDependency;
 			package = C399C4D82CF700F700DA95DA /* XCRemoteSwiftPackageReference "SnapKit" */;
 			productName = SnapKit;
-		};
-		C399C4DB2CF700F700DA95DA /* SnapKit-Dynamic */ = {
-			isa = XCSwiftPackageProductDependency;
-			package = C399C4D82CF700F700DA95DA /* XCRemoteSwiftPackageReference "SnapKit" */;
-			productName = "SnapKit-Dynamic";
 		};
 /* End XCSwiftPackageProductDependency section */
 	};

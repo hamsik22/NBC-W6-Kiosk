@@ -7,40 +7,35 @@
 
 import Foundation
 
-protocol Product: Subject {
-    /// selectedCount 프로퍼티 값이 변경됐을 때 Observer에 알리는 함수
-    /// - Parameter selectedCount: Observer 함수의 매개변수로 전달
-    func notify(selectedCount: Int)
-}
-
-struct DefaultProduct: Product {
-    private var observers: [Observer] = []
-    
+struct Product: Decodable {
+    let id: String
     let category: MenuCategory
     let name: String
     let englishName: String
     let price: Int
     let thumbnailImageString: String
-    
-    /// if stock == 0 { sould out }
     var stock: Int
-    private var selectedCount: Int {
-        didSet { notify(selectedCount: selectedCount) }
+    var selectedCount: Int
+    
+    enum CodingKeys: CodingKey {
+        case category
+        case name
+        case englishName
+        case price
+        case thumbnailImageString
+        case stock
+        case selectedCount
     }
     
-    init(category: MenuCategory, name: String, englishName: String, price: Int, thumbnailImageString: String, stock: Int, selectedCount: Int = 0) {
-        self.category = category
-        self.name = name
-        self.englishName = englishName
-        self.price = price
-        self.thumbnailImageString = thumbnailImageString
-        self.stock = stock
-        self.selectedCount = selectedCount
-    }
-    
-    mutating func addObserver(_ observer: any Observer) { observers.append(observer) }
-    
-    func notify(selectedCount: Int) {
-        // TODO: 장바구니 화면 연동까지 확인 후 구연
+    init(from decoder: any Decoder) throws {
+        let container = try decoder.container(keyedBy: CodingKeys.self)
+        self.id = UUID().uuidString // Decodable로 인스턴스 생성시 UUID 할당
+        self.category = try container.decode(MenuCategory.self, forKey: .category)
+        self.name = try container.decode(String.self, forKey: .name)
+        self.englishName = try container.decode(String.self, forKey: .englishName)
+        self.price = try container.decode(Int.self, forKey: .price)
+        self.thumbnailImageString = try container.decode(String.self, forKey: .thumbnailImageString)
+        self.stock = try container.decode(Int.self, forKey: .stock)
+        self.selectedCount = 0  // Decodable로 인스턴스 생성시 초기값 할당
     }
 }
