@@ -38,7 +38,7 @@ class KioskViewController: UIViewController, Observer {
         
         setupUI()
         setupTableView()
-        menu.notifySelectedMenu(.coffee)
+        menu.notifySelectedMenu(.iced)
     }
     
     private func setupUI() {
