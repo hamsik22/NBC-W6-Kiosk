@@ -16,7 +16,7 @@ protocol Product: Subject {
 struct DefaultProduct: Product {
     private var observers: [Observer] = []
     
-    let category: Category
+    let category: MenuCategory
     let name: String
     let englishName: String
     let price: Int
@@ -28,7 +28,7 @@ struct DefaultProduct: Product {
         didSet { notify(selectedCount: selectedCount) }
     }
     
-    init(category: Category, name: String, englishName: String, price: Int, thumbnailImageString: String, stock: Int, selectedCount: Int = 0) {
+    init(category: MenuCategory, name: String, englishName: String, price: Int, thumbnailImageString: String, stock: Int, selectedCount: Int = 0) {
         self.category = category
         self.name = name
         self.englishName = englishName
