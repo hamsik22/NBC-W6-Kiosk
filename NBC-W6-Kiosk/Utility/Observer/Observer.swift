@@ -14,6 +14,4 @@ protocol Observer {
     ///
     /// Controller에서 전달인자를 기반으로 TableView Data Reload
     func fetchMenu(_ filteredList: [DefaultProduct])
-    
-    func fetchShoppingBasket(_ list: [DefaultProduct])
 }

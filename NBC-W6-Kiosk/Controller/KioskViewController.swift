@@ -10,7 +10,6 @@ import SwiftUI
 
 class KioskViewController: UIViewController, Observer {
     var menu: Menu!
-    var shoppingBasket: ShoppingBasket!
     
     private var filteredMenuItems: [DefaultProduct] = []
     
@@ -32,9 +31,6 @@ class KioskViewController: UIViewController, Observer {
         super.viewDidLoad()
         menu = DefaultMenu()
         menu.addObserver(self)
-        
-        shoppingBasket = DefaultShoppingBasket()
-        shoppingBasket.addObserver(self)
         
         setupUI()
         setupTableView()
@@ -75,11 +71,6 @@ class KioskViewController: UIViewController, Observer {
     func fetchMenu(_ filteredList: [DefaultProduct]) {
         filteredMenuItems = filteredList
         tableView.reloadData()
-    }
-    
-    func fetchShoppingBasket(_ list: [DefaultProduct]) {
-        // MARK: menuTableViewCell을 탭하면 shoppingBasket 모델에서 해당 상품을 등록하고 리스트를 전달인자로 넘겨줍니다.
-        // TODO: 장바구니에 보여질 상품 데이터들을 list 전달인자를 기반으로 구현하면 됩니다.
     }
 }
 
