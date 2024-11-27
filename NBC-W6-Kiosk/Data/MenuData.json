@@ -4,7 +4,7 @@
     "name": "에스프레소",
     "englishName": "Espresso",
     "price": 3700,
-    "thumbnailImageString": "에스프레소",
+    "thumbnailImageString": "Espresso",
     "stock": 123
   },
   {
@@ -12,7 +12,7 @@
     "name": "카페 아메리카노",
     "englishName": "Caffe Americano",
     "price": 4500,
-    "thumbnailImageString": "카페 아메리카노",
+    "thumbnailImageString": "CaffeAmericano",
     "stock": 342
   },
   {
@@ -20,7 +20,7 @@
     "name": "카페 라떼",
     "englishName": "Caffe Latte",
     "price": 5000,
-    "thumbnailImageString": "카페 라떼",
+    "thumbnailImageString": "CaffeLatte",
     "stock": 254
   },
   {
@@ -28,7 +28,7 @@
     "name": "카페 모카",
     "englishName": "Caffe Mocha",
     "price": 5500,
-    "thumbnailImageString": "카페 모카",
+    "thumbnailImageString": "CaffeMocha",
     "stock": 487
   },
   {
@@ -36,7 +36,7 @@
     "name": "카푸치노",
     "englishName": "Cappucino",
     "price": 5000,
-    "thumbnailImageString": "카푸치노",
+    "thumbnailImageString": "Cappucino",
     "stock": 302
   },
   {
@@ -44,7 +44,7 @@
     "name": "카라멜 마키아또",
     "englishName": "Caramel Macchiato",
     "price": 5900,
-    "thumbnailImageString": "카라멜 마키아또",
+    "thumbnailImageString": "CaramelMacchiato",
     "stock": 195
   },
   {
@@ -52,7 +52,7 @@
     "name": "디카페인 아메리카노",
     "englishName": "DECAFE Caffe Americano",
     "price": 4800,
-    "thumbnailImageString": "디카페인 아메리카노",
+    "thumbnailImageString": "DECAFE_CaffeAmericano",
     "stock": 87
   },
   {
@@ -60,7 +60,7 @@
     "name": "디카페인 카페 라떼",
     "englishName": "DECAFE Caffe Latte",
     "price": 5300,
-    "thumbnailImageString": "디카페인 카페 라떼",
+    "thumbnailImageString": "DECAFE_CaffeLatte",
     "stock": 430
   },
   {
@@ -68,7 +68,7 @@
     "name": "디카페인 카라멜 마키아또",
     "englishName": "DECAFE Caramel Macchiato",
     "price": 5300,
-    "thumbnailImageString": "디카페인 카라멜 마키아또",
+    "thumbnailImageString": "DECAFE_CaramelMacchiato",
     "stock": 210
   },
   {
@@ -76,7 +76,7 @@
     "name": "아이스 카페 아메리카노",
     "englishName": "Iced Caffe Americano",
     "price": 4500,
-    "thumbnailImageString": "아이스 카페 아메리카노",
+    "thumbnailImageString": "IcedCaffeAmericano",
     "stock": 390
   },
   {
@@ -84,7 +84,7 @@
     "name": "아이스 카페 라떼",
     "englishName": "Iced Caffe Latte",
     "price": 5000,
-    "thumbnailImageString": "아이스 카페 라떼",
+    "thumbnailImageString": "IcedCaffeLatte",
     "stock": 258
   },
   {
@@ -92,7 +92,7 @@
     "name": "아이스 카페 모카",
     "englishName": "Iced Caffe Mocha",
     "price": 5500,
-    "thumbnailImageString": "아이스 카페 모카",
+    "thumbnailImageString": "IcedCaffeMocha",
     "stock": 400
   },
   {
@@ -100,7 +100,7 @@
     "name": "아이스 카푸치노",
     "englishName": "Iced Cappucino",
     "price": 5000,
-    "thumbnailImageString": "아이스 카푸치노",
+    "thumbnailImageString": "IcedCappucino",
     "stock": 98
   },
   {
@@ -108,7 +108,7 @@
     "name": "아이스 카라멜 마키아또",
     "englishName": "Iced Caramel Macchiato",
     "price": 5900,
-    "thumbnailImageString": "아이스 카라멜 마키아또",
+    "thumbnailImageString": "IcedCaramelMacchiato",
     "stock": 276
   },
   {
@@ -116,7 +116,7 @@
     "name": "디카페인 아이스 아메리카노",
     "englishName": "DECAFE Iced Caffe Americano",
     "price": 4800,
-    "thumbnailImageString": "디카페인 아이스 아메리카노",
+    "thumbnailImageString": "DECAFE_IcedCaffeAmericano",
     "stock": 159
   },
   {
@@ -124,7 +124,7 @@
     "name": "디카페인 아이스 카페 라떼",
     "englishName": "DECAFE Iced Caffe Latte",
     "price": 5300,
-    "thumbnailImageString": "디카페인 아이스 카페 라떼",
+    "thumbnailImageString": "DECAFE_IcedCaffeLatte",
     "stock": 222
   },
   {
@@ -132,7 +132,7 @@
     "name": "디카페인 아이스 카라멜 마키아또",
     "englishName": "DECAFE Iced Caramel Macchiato",
     "price": 5300,
-    "thumbnailImageString": "디카페인 아이스 카라멜 마키아또",
+    "thumbnailImageString": "DECAFE_IcedCaramelMacchiato",
     "stock": 310
   },
   {
@@ -140,7 +140,7 @@
     "name": "밀크 티",
     "englishName": "Milk Tea",
     "price": 5900,
-    "thumbnailImageString": "밀크 티",
+    "thumbnailImageString": "MilkTea",
     "stock": 45
   },
   {
@@ -148,7 +148,7 @@
     "name": "레몬 캐모마일 티",
     "englishName": "Lemon Chamomile Tea",
     "price": 5900,
-    "thumbnailImageString": "레몬 캐모마일 티",
+    "thumbnailImageString": "LemonChamomileTea",
     "stock": 390
   },
   {
@@ -156,7 +156,7 @@
     "name": "자몽 에이드",
     "englishName": "Grapefruit Ade",
     "price": 6000,
-    "thumbnailImageString": "자몽 에이드",
+    "thumbnailImageString": "GrapefruitAde",
     "stock": 280
   },
   {
@@ -164,7 +164,7 @@
     "name": "딸기 레몬에이드",
     "englishName": "Strawberry Lemon Ade",
     "price": 6000,
-    "thumbnailImageString": "딸기 레몬에이드",
+    "thumbnailImageString": "StrawberryLemonAde",
     "stock": 100
   },
   {
@@ -172,7 +172,7 @@
     "name": "라임 에이드",
     "englishName": "Lime Ade",
     "price": 6000,
-    "thumbnailImageString": "라임 에이드",
+    "thumbnailImageString": "LimeAde",
     "stock": 487
   },
   {
@@ -180,7 +180,7 @@
     "name": "망고 블렌디드",
     "englishName": "Banana Blended",
     "price": 6500,
-    "thumbnailImageString": "망고 블렌디드",
+    "thumbnailImageString": "BananaBlended",
     "stock": 150
   },
   {
@@ -188,7 +188,7 @@
     "name": "망고 블렌디드",
     "englishName": "Mango Blended",
     "price": 6500,
-    "thumbnailImageString": "망고 블렌디드",
+    "thumbnailImageString": "MangoBlended",
     "stock": 120
   },
   {
@@ -196,7 +196,7 @@
     "name": "고구마 카스텔라 케이크",
     "englishName": "Sweet Potato Castella Cake",
     "price": 7100,
-    "thumbnailImageString": "고구마 카스텔라 케이크",
+    "thumbnailImageString": "SweetPotatoCastellaCake",
     "stock": 5
   },
   {
@@ -204,7 +204,7 @@
     "name": "가나슈 레이어 케이크",
     "englishName": "Ganache Layer Cake",
     "price": 6900,
-    "thumbnailImageString": "가나슈 레이어 케이크",
+    "thumbnailImageString": "GanacheLayerCake",
     "stock": 0
   },
   {
@@ -212,7 +212,7 @@
     "name": "클라우드 치즈 케이크",
     "englishName": "Cloud Cheese Cake",
     "price": 6900,
-    "thumbnailImageString": "클라우드 치즈 케이크",
+    "thumbnailImageString": "CloudCheeseCake",
     "stock": 20
   },
   {
@@ -220,7 +220,7 @@
     "name": "티라미수 케이크",
     "englishName": "Tiramisu Cake",
     "price": 6000,
-    "thumbnailImageString": "티라미수 케이크",
+    "thumbnailImageString": "TiramisuCake",
     "stock": 30
   },
   {
@@ -228,7 +228,7 @@
     "name": "탕종 플레인 베이글",
     "englishName": "Plain Bagel",
     "price": 3000,
-    "thumbnailImageString": "탕종 플레인 베이글",
+    "thumbnailImageString": "PlainBagel",
     "stock": 20
   },
   {
@@ -236,7 +236,7 @@
     "name": "치킨 베이컨 랩",
     "englishName": "Chicken Bacon Wrap",
     "price": 5200,
-    "thumbnailImageString": "치킨 베이컨 랩",
+    "thumbnailImageString": "ChickenBaconWrap",
     "stock": 10
   },
   {
@@ -244,7 +244,7 @@
     "name": "트러플 머쉬룸 수프",
     "englishName": "Truffle Mushroom Soup",
     "price": 4200,
-    "thumbnailImageString": "트러플 머쉬룸 수프",
+    "thumbnailImageString": "TruffleMushroomSoup",
     "stock": 50
   }
 ]
