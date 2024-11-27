@@ -1,17 +1,17 @@
 {
   "images" : [
     {
-      "filename" : "에스프레소.png",
+      "filename" : "Espresso.png",
       "idiom" : "universal",
       "scale" : "1x"
     },
     {
-      "filename" : "에스프레소@2x.png",
+      "filename" : "Espresso@2x.png",
       "idiom" : "universal",
       "scale" : "2x"
     },
     {
-      "filename" : "에스프레소@3x.png",
+      "filename" : "Espresso@3x.png",
       "idiom" : "universal",
       "scale" : "3x"
     }

@@ -1,17 +1,17 @@
 {
   "images" : [
     {
-      "filename" : "딸기 레모네이드.png",
+      "filename" : "StrawberryLemonAde.png",
       "idiom" : "universal",
       "scale" : "1x"
     },
     {
-      "filename" : "딸기 레모네이드@2x.png",
+      "filename" : "StrawberryLemonAde@2x.png",
       "idiom" : "universal",
       "scale" : "2x"
     },
     {
-      "filename" : "딸기 레모네이드@3x.png",
+      "filename" : "StrawberryLemonAde@3x.png",
       "idiom" : "universal",
       "scale" : "3x"
     }

@@ -1,17 +1,17 @@
 {
   "images" : [
     {
-      "filename" : "핫 카페모카.png",
+      "filename" : "CaffeMocha.png",
       "idiom" : "universal",
       "scale" : "1x"
     },
     {
-      "filename" : "핫 카페모카@2x.png",
+      "filename" : "CaffeMocha@2x.png",
       "idiom" : "universal",
       "scale" : "2x"
     },
     {
-      "filename" : "핫 카페모카@3x.png",
+      "filename" : "CaffeMocha@3x.png",
       "idiom" : "universal",
       "scale" : "3x"
     }

@@ -1,17 +1,17 @@
 {
   "images" : [
     {
-      "filename" : "망고 블렌디드.png",
+      "filename" : "MangoBlended.png",
       "idiom" : "universal",
       "scale" : "1x"
     },
     {
-      "filename" : "망고 블렌디드@2x.png",
+      "filename" : "MangoBlended@2x.png",
       "idiom" : "universal",
       "scale" : "2x"
     },
     {
-      "filename" : "망고 블렌디드@3x.png",
+      "filename" : "MangoBlended@3x.png",
       "idiom" : "universal",
       "scale" : "3x"
     }

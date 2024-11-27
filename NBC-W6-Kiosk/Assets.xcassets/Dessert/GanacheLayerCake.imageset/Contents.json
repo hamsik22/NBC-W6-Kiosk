@@ -1,17 +1,17 @@
 {
   "images" : [
     {
-      "filename" : "가나슈 레이어 케이크.png",
+      "filename" : "GanacheLayerCake.png",
       "idiom" : "universal",
       "scale" : "1x"
     },
     {
-      "filename" : "가나슈 레이어 케이크@2x.png",
+      "filename" : "GanacheLayerCake@2x.png",
       "idiom" : "universal",
       "scale" : "2x"
     },
     {
-      "filename" : "가나슈 레이어 케이크@3x.png",
+      "filename" : "GanacheLayerCake@3x.png",
       "idiom" : "universal",
       "scale" : "3x"
     }

@@ -1,17 +1,17 @@
 {
   "images" : [
     {
-      "filename" : "디카페인 아이스 아메리카노.png",
+      "filename" : "DECAFE_IcedCaffeAmericano.png",
       "idiom" : "universal",
       "scale" : "1x"
     },
     {
-      "filename" : "디카페인 아이스 아메리카노@2x.png",
+      "filename" : "DECAFE_IcedCaffeAmericano@2x.png",
       "idiom" : "universal",
       "scale" : "2x"
     },
     {
-      "filename" : "디카페인 아이스 아메리카노@3x.png",
+      "filename" : "DECAFE_IcedCaffeAmericano@3x.png",
       "idiom" : "universal",
       "scale" : "3x"
     }

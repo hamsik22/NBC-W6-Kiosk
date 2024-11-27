@@ -1,17 +1,17 @@
 {
   "images" : [
     {
-      "filename" : "클라임 피지오.png",
+      "filename" : "LimeAde.png",
       "idiom" : "universal",
       "scale" : "1x"
     },
     {
-      "filename" : "클라임 피지오@2x.png",
+      "filename" : "LimeAde@2x.png",
       "idiom" : "universal",
       "scale" : "2x"
     },
     {
-      "filename" : "클라임 피지오@3x.png",
+      "filename" : "LimeAde@3x.png",
       "idiom" : "universal",
       "scale" : "3x"
     }

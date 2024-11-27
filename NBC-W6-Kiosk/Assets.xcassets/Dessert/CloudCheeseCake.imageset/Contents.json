@@ -1,17 +1,17 @@
 {
   "images" : [
     {
-      "filename" : "클라우드 치즈 케이크.png",
+      "filename" : "CloudCheeseCake.png",
       "idiom" : "universal",
       "scale" : "1x"
     },
     {
-      "filename" : "클라우드 치즈 케이크@2x.png",
+      "filename" : "CloudCheeseCake@2x.png",
       "idiom" : "universal",
       "scale" : "2x"
     },
     {
-      "filename" : "클라우드 치즈 케이크@3x.png",
+      "filename" : "CloudCheeseCake@3x.png",
       "idiom" : "universal",
       "scale" : "3x"
     }

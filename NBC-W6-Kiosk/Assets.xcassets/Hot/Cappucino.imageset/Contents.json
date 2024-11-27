@@ -1,17 +1,17 @@
 {
   "images" : [
     {
-      "filename" : "핫 카푸치노.png",
+      "filename" : "Cappucino.png",
       "idiom" : "universal",
       "scale" : "1x"
     },
     {
-      "filename" : "핫 카푸치노@2x.png",
+      "filename" : "Cappucino@2x.png",
       "idiom" : "universal",
       "scale" : "2x"
     },
     {
-      "filename" : "핫 카푸치노@3x.png",
+      "filename" : "Cappucino@3x.png",
       "idiom" : "universal",
       "scale" : "3x"
     }

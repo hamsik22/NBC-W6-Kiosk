@@ -1,17 +1,17 @@
 {
   "images" : [
     {
-      "filename" : "레몬 캐모마일 티.png",
+      "filename" : "LemonChamomileTea.png",
       "idiom" : "universal",
       "scale" : "1x"
     },
     {
-      "filename" : "레몬 캐모마일 티@2x.png",
+      "filename" : "LemonChamomileTea@2x.png",
       "idiom" : "universal",
       "scale" : "2x"
     },
     {
-      "filename" : "레몬 캐모마일 티@3x.png",
+      "filename" : "LemonChamomileTea@3x.png",
       "idiom" : "universal",
       "scale" : "3x"
     }

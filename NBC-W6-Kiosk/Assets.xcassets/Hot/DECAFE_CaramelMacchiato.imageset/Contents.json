@@ -1,17 +1,17 @@
 {
   "images" : [
     {
-      "filename" : "디카페인 핫 카라멜 마키아또.png",
+      "filename" : "DECAFE_CaramelMacchiato.png",
       "idiom" : "universal",
       "scale" : "1x"
     },
     {
-      "filename" : "디카페인 핫 카라멜 마키아또@2x.png",
+      "filename" : "DECAFE_CaramelMacchiato@2x.png",
       "idiom" : "universal",
       "scale" : "2x"
     },
     {
-      "filename" : "디카페인 핫 카라멜 마키아또@3x.png",
+      "filename" : "DECAFE_CaramelMacchiato@3x.png",
       "idiom" : "universal",
       "scale" : "3x"
     }

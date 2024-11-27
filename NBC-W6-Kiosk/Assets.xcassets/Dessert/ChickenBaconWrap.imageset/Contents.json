@@ -1,17 +1,17 @@
 {
   "images" : [
     {
-      "filename" : "치킨 베이컨 랩.png",
+      "filename" : "ChickenBaconWrap.png",
       "idiom" : "universal",
       "scale" : "1x"
     },
     {
-      "filename" : "치킨 베이컨 랩@2x.png",
+      "filename" : "ChickenBaconWrap@2x.png",
       "idiom" : "universal",
       "scale" : "2x"
     },
     {
-      "filename" : "치킨 베이컨 랩@3x.png",
+      "filename" : "ChickenBaconWrap@3x.png",
       "idiom" : "universal",
       "scale" : "3x"
     }

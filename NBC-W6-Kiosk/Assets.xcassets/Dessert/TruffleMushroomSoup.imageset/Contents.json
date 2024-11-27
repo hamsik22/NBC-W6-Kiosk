@@ -1,17 +1,17 @@
 {
   "images" : [
     {
-      "filename" : "트러플 머쉬룸 수프.png",
+      "filename" : "TruffleMushroomSoup.png",
       "idiom" : "universal",
       "scale" : "1x"
     },
     {
-      "filename" : "트러플 머쉬룸 수프@2x.png",
+      "filename" : "TruffleMushroomSoup@2x.png",
       "idiom" : "universal",
       "scale" : "2x"
     },
     {
-      "filename" : "트러플 머쉬룸 수프@3x.png",
+      "filename" : "TruffleMushroomSoup@3x.png",
       "idiom" : "universal",
       "scale" : "3x"
     }
