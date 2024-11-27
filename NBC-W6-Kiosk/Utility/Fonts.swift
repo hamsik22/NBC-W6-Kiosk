@@ -1,16 +1,21 @@
 import UIKit
 
 struct Fonts {
+    // 카테고리바
+    static func categoryFont() -> UIFont {
+        return UIFont(name: "NotoSansKR-SemiBold", size: 13) ?? UIFont.systemFont(ofSize: 13)
+    }
+    
     // 상단 메뉴 바
     static func nameFont() -> UIFont {
-        return UIFont(name: "NotoSans-Medium", size: 16) ?? UIFont.systemFont(ofSize: 16)
+        return UIFont(name: "NotoSansKR-Medium", size: 16) ?? UIFont.systemFont(ofSize: 16)
     }
     static func englishNameFont() -> UIFont {
         return UIFont(name: "NotoSansKR-Regular", size: 12) ?? UIFont.systemFont(ofSize: 12)
     }
     
     static func priceFont() -> UIFont {
-        return UIFont(name: "NotoSans-Medium", size: 16) ?? UIFont.systemFont(ofSize: 16)
+        return UIFont(name: "NotoSansKR-Medium", size: 16) ?? UIFont.systemFont(ofSize: 16)
     }
     
     // 장바구니 메뉴 바
