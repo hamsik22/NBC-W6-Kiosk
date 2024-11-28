@@ -44,4 +44,13 @@ struct Fonts {
     static func submitButtonFont() -> UIFont {
         return UIFont(name: "NotoSansKR-Bold", size: 17) ?? UIFont.systemFont(ofSize: 17)
     }
+    
+    // Alert Font
+    static func alertTitleFont() -> UIFont {
+        return UIFont(name: "NotoSansKR-Bold", size: 17) ?? UIFont.systemFont(ofSize: 17)
+    }
+    
+    static func alertBodyFont() -> UIFont {
+        return UIFont(name: "NotoSansKR-Regular", size: 13) ?? UIFont.systemFont(ofSize: 13)
+    }
 }
