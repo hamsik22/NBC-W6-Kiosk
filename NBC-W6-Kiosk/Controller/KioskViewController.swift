@@ -6,9 +6,10 @@
 //  Updated by 김형석 on 11/27/24.
 
 import UIKit
+import SnapKit
 
 class KioskViewController: UIViewController, Observer {
-    var menu: Menu!
+    var menu: Menu = Menu()
     // 결제완료 후 현재 화면에 보여지고있는 메뉴 tableView를 reload하기 위해 선언
     var currentMenu: MenuCategory = .hot
     
@@ -33,17 +34,18 @@ class KioskViewController: UIViewController, Observer {
         return tableView
     }()
     
+    private let orderButtonView: OrderButtonView = { OrderButtonView() }()
+    
     private let orderList: OrderList = {
         let view = OrderList()
         return view
     }()
-    
     override func viewDidLoad() {
         super.viewDidLoad()
-        menu = Menu()
         // View가 그려지기 전에 json 데이터 디코팅 후 menu 모델에 저장
         menu.list = decode(from: fetchDataFromJSONFile()!) ?? []
         menu.addObserver(self)
+        orderButtonView.delegate = self
         
         setupUI()
         setupTableView()
@@ -52,10 +54,10 @@ class KioskViewController: UIViewController, Observer {
     
     private func setupUI() {
         view.backgroundColor = .gray0
-        view.addSubview(segmentedControl) // 메뉴 카테고리
-        view.addSubview(tableView) // 메뉴선택
+        [segmentedControl, tableView, orderButtonView].forEach { view.addSubview($0) }
         orderList.setupOrderListView()
         view.addSubview(orderList)
+        
         
         segmentedControl.addTarget(self, action: #selector(segmentedControlValueChanged), for: .valueChanged)
         
@@ -67,12 +69,18 @@ class KioskViewController: UIViewController, Observer {
             tableView.topAnchor.constraint(equalTo: segmentedControl.bottomAnchor, constant: 16),
             tableView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
             tableView.trailingAnchor.constraint(equalTo: view.trailingAnchor),
-            tableView.bottomAnchor.constraint(equalTo: view.centerYAnchor)
+            tableView.bottomAnchor.constraint(equalTo: view.bottomAnchor, constant: -300.0)
         ])
         orderList.snp.makeConstraints {
             $0.top.equalTo(tableView.snp.bottom)
             $0.width.equalToSuperview()
             $0.bottom.equalToSuperview().offset(-50)
+        }
+        
+        orderButtonView.snp.makeConstraints {
+            $0.height.equalTo(57.0)
+            $0.leading.trailing.equalToSuperview()
+            $0.bottom.equalTo(view.safeAreaLayoutGuide)
         }
     }
     
@@ -156,6 +164,32 @@ extension KioskViewController {
         guard let productList = try? JSONDecoder().decode([Product].self, from: data) else { return nil }
         
         return productList
+    }
+}
+
+// MARK: OrderButtonView Delegate
+extension KioskViewController: OrderButtonViewDelegate {
+    
+    /// 취소 버튼을 누르면 shoppingBasketItems 배열을 비운다.
+    func cancelButtonDidTap() { shoppingBasketItems.removeAll() }
+    
+    func orderButtonDidTap() {
+        let alert = UIAlertController(title: "결제하기", message: "결제를하시겠습니까?", preferredStyle: .alert)
+        
+        alert.addAction(
+            UIAlertAction(
+                title: NSLocalizedString("취소", comment: "Default action"),
+                style: .cancel))
+        alert.addAction(
+            UIAlertAction(
+                title: NSLocalizedString("결제", comment: "Default action"),
+                style: .default,
+                handler: { _ in
+                    print("shoppingBasketItems 데이터 활용해서 결제 로직 구현")
+                }
+            ))
+        
+        self.present(alert, animated: true, completion: nil)
     }
 }
 
