@@ -17,14 +17,14 @@ struct DefaultMenu: Menu {
     private var observers: [Observer] = []
     
     private let list: [DefaultProduct] = [
-        DefaultProduct(category: .coffee, name: "아이스 아메리카노", englishName: "Ice Americano", price: 5000, thumbnailImageString: "image01.png", stock: 19),
-        DefaultProduct(category: .dessert, name: "치즈 케이크", englishName: "Cheese Cake", price: 7000, thumbnailImageString: "image02.png", stock: 2),
-        DefaultProduct(category: .ade, name: "레몬에이드", englishName: "Lemone Ade", price: 6000, thumbnailImageString: "image03.png", stock: 40),
-        DefaultProduct(category: .products, name: "텀블러", englishName: "Tumbler", price: 20000, thumbnailImageString: "image04.png", stock: 0),
-        DefaultProduct(category: .coffee, name: "에스프레소", englishName: "Espresso", price: 3700, thumbnailImageString: "image05.png", stock: 1),
-        DefaultProduct(category: .coffee, name: "카페라떼", englishName: "Cafe Latte", price: 4500, thumbnailImageString: "image05.png", stock: 2),
-        DefaultProduct(category: .dessert, name: "티라미수", englishName: "Tiramisu", price: 6500, thumbnailImageString: "image05.png", stock: 2),
-        DefaultProduct(category: .dessert, name: "초코케이크", englishName: "Chocolate Cake", price: 6000, thumbnailImageString: "image05.png", stock: 2),
+        DefaultProduct(category: .Hot, name: "아이스 아메리카노", englishName: "Ice Americano", price: 5000, thumbnailImageString: "image01.png", stock: 19),
+        DefaultProduct(category: .Iced, name: "치즈 케이크", englishName: "Cheese Cake", price: 7000, thumbnailImageString: "image02.png", stock: 2),
+        DefaultProduct(category: .Ade, name: "레몬에이드", englishName: "Lemone Ade", price: 6000, thumbnailImageString: "image03.png", stock: 40),
+        DefaultProduct(category: .Dessert, name: "텀블러", englishName: "Tumbler", price: 20000, thumbnailImageString: "image04.png", stock: 0),
+        DefaultProduct(category: .Hot, name: "에스프레소", englishName: "Espresso", price: 3700, thumbnailImageString: "image05.png", stock: 1),
+        DefaultProduct(category: .Hot, name: "카페라떼", englishName: "Cafe Latte", price: 4500, thumbnailImageString: "image05.png", stock: 2),
+        DefaultProduct(category: .Dessert, name: "티라미수", englishName: "Tiramisu", price: 6500, thumbnailImageString: "image05.png", stock: 2),
+        DefaultProduct(category: .Dessert, name: "초코케이크", englishName: "Chocolate Cake", price: 6000, thumbnailImageString: "image05.png", stock: 2),
     ]
     
     mutating func addObserver(_ observer: any Observer) { observers.append(observer) }
