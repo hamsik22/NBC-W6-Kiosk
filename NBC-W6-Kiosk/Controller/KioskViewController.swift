@@ -13,7 +13,11 @@ class KioskViewController: UIViewController, Observer {
     var currentMenu: MenuCategory = .hot
     
     private var filteredMenuItems: [Product] = []
-    private var shoppingBasketItems: [Product] = []
+    private var shoppingBasketItems: [Product] = [] {
+        didSet {
+            print(shoppingBasketItems)
+        }
+    }
     
     private let segmentedControl: UISegmentedControl = {
         let control = UISegmentedControl(items: MenuCategory.allCases.map { $0.rawValue })
@@ -76,7 +80,10 @@ class KioskViewController: UIViewController, Observer {
     private func setupTableView() {
         tableView.delegate = self
         tableView.dataSource = self
+        orderList.orderList.delegate = self
+        orderList.orderList.dataSource = self
         tableView.register(MenuItemCell.self, forCellReuseIdentifier: MenuItemCell.identifier)
+        orderList.orderList.register(OrderListCell.self, forCellReuseIdentifier: OrderListCell.identifier)
     }
     
     @objc private func segmentedControlValueChanged(_ sender: UISegmentedControl) {
@@ -94,16 +101,27 @@ class KioskViewController: UIViewController, Observer {
 
 extension KioskViewController: UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return filteredMenuItems.count
+        print("numberofSec\(tableView)")
+        if tableView == self.tableView {
+            return filteredMenuItems.count
+        } else {
+            print(shoppingBasketItems.count)
+            return shoppingBasketItems.count
+        }
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        guard let cell = tableView.dequeueReusableCell(withIdentifier: MenuItemCell.identifier, for: indexPath) as? MenuItemCell else {
+        if tableView == self.tableView {
+            guard let cell = tableView.dequeueReusableCell(withIdentifier: MenuItemCell.identifier, for: indexPath) as? MenuItemCell else { return UITableViewCell() }
+            cell.configure(with: filteredMenuItems[indexPath.row])
+            return cell
+        } else if tableView == orderList.orderList {
+            guard let cell = tableView.dequeueReusableCell(withIdentifier: OrderListCell.identifier, for: indexPath) as? OrderListCell else { return UITableViewCell() }
+            cell.configure(with: shoppingBasketItems[indexPath.row])
+            return cell
+        } else {
             return UITableViewCell()
         }
-        
-        cell.configure(with: filteredMenuItems[indexPath.row])
-        return cell
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
