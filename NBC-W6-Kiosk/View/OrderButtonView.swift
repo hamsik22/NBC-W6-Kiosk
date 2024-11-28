@@ -8,14 +8,8 @@
 import UIKit
 import SnapKit
 
-protocol OrderButtonViewDelegate: AnyObject {
-    func cancelButtonDidTap()
-    
-    func orderButtonDidTap()
-}
-
-final class OrderButtonView: UIView {
-    weak var delegate: OrderButtonViewDelegate?
+final class BottomOrderView: UIView {
+    weak var delegate: BottomOrderViewDelegate?
     
     private lazy var contentStackView: UIStackView = {
         let stackView = UIStackView()
@@ -30,8 +24,15 @@ final class OrderButtonView: UIView {
     private lazy var cancelButton: UIButton = {
         let button = UIButton()
         button.setTitle("취소", for: .normal)
-        button.backgroundColor = .red   // TODO: 색상 변경
+        button.setTitleColor(.gray9, for: .normal)
+        button.titleLabel?.font = Fonts.submitButtonFont()
+        
+        button.backgroundColor = .gray0
+        
         button.layer.cornerRadius = 12.0
+        button.layer.borderWidth = 1
+        button.layer.borderColor = UIColor.separator.cgColor
+        
         button.addTarget(self, action: #selector(cancelButtonDidTap), for: .touchUpInside)
         
         return button
@@ -40,8 +41,12 @@ final class OrderButtonView: UIView {
     private lazy var orderButton: UIButton = {
         let button = UIButton()
         button.setTitle("결제", for: .normal)
-        button.backgroundColor = .red   // TODO: 색상 변경
+        button.titleLabel?.font = Fonts.submitButtonFont()
+        
+        button.backgroundColor = .blue0
+        
         button.layer.cornerRadius = 12.0
+        
         button.addTarget(self, action: #selector(orderButtonDidTap), for: .touchUpInside)
         
         return button
@@ -50,9 +55,8 @@ final class OrderButtonView: UIView {
     
     override init(frame: CGRect) {
         super.init(frame: .zero)
-        self.configUI()
-        self.setupConstraints()
-        
+        configUI()
+        setupConstraints()
     }
     
     required init?(coder: NSCoder) {
@@ -60,32 +64,29 @@ final class OrderButtonView: UIView {
     }
     
     private func configUI() {
+        backgroundColor = .systemBackground
         addSubview(contentStackView)
         [cancelButton, orderButton].forEach { contentStackView.addArrangedSubview($0) }
     }
     
-    @objc func cancelButtonDidTap() {
-        self.delegate?.cancelButtonDidTap()
-    }
-    
-    @objc func orderButtonDidTap() { self.delegate?.orderButtonDidTap() }
-    
     private func setupConstraints() {
         contentStackView.snp.makeConstraints {
-            $0.top.equalToSuperview()
-            $0.leading.trailing.equalToSuperview().inset(16.0)
-            $0.bottom.equalToSuperview().inset(9.0)
+            $0.edges.equalToSuperview().inset(UIEdgeInsets(top: 0, left: 16, bottom: 8, right: 16))
+            $0.height.equalTo(48)
         }
     }
+    
+    @objc func cancelButtonDidTap() { self.delegate?.cancelButtonDidTap() }
+    @objc func orderButtonDidTap() { self.delegate?.orderButtonDidTap() }
 }
 
 #if DEBUG
 
 import SwiftUI
 
-struct OrderButtonView_Previews: PreviewProvider {
+struct BottomOrderView_Previews: PreviewProvider {
     static var previews: some View {
-        OrderButtonView_Presentable()
+        ButtonOrderView_Presentable()
             .edgesIgnoringSafeArea(.all)
             .frame(
                 width: UIScreen.main.bounds.width,
@@ -93,9 +94,9 @@ struct OrderButtonView_Previews: PreviewProvider {
                 alignment: .center)
     }
     
-    struct OrderButtonView_Presentable: UIViewRepresentable {
+    struct ButtonOrderView_Presentable: UIViewRepresentable {
         func makeUIView(context: Context) -> some UIView {
-            OrderButtonView()
+            BottomOrderView()
         }
         
         func updateUIView(_ uiView: UIViewType, context: Context) {}

@@ -35,7 +35,7 @@ class MenuItemCell: UITableViewCell {
     
     private let nameLabel: UILabel = {
         let label = UILabel()
-        label.font = .systemFont(ofSize: 16, weight: .medium)
+        label.font = Fonts.nameFont()
         label.translatesAutoresizingMaskIntoConstraints = false
         
         return label
@@ -43,7 +43,7 @@ class MenuItemCell: UITableViewCell {
     
     private let englishNameLabel: UILabel = {
         let label = UILabel()
-        label.font = .systemFont(ofSize: 14)
+        label.font = Fonts.englishNameFont()
         label.textColor = .gray2
         label.translatesAutoresizingMaskIntoConstraints = false
         
@@ -52,7 +52,7 @@ class MenuItemCell: UITableViewCell {
     
     private let priceLabel: UILabel = {
         let label = UILabel()
-        label.font = .systemFont(ofSize: 16, weight: .medium)
+        label.font = Fonts.priceFont()
         label.translatesAutoresizingMaskIntoConstraints = false
         
         return label

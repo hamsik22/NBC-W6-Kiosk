@@ -9,113 +9,191 @@ import UIKit
 import SnapKit
 
 class OrderList: UIView {
+    let cart = Cart()
+    weak var delegate: OrderListDelegate?
     
-    var itemList: [Product]?
+    let orderTableView: UITableView = {
+        let tableView = UITableView()
+        tableView.separatorStyle = .none
+        tableView.backgroundColor = .clear
+        
+        return tableView
+    }()
     
-    // 주문내역이 없을 시 표시되는 문구
-    let noOrderText = UILabel()
-    // 주문내역을 표시하는 테이블 뷰
-    let orderList = UITableView()
-    // 주문수량, 주문금액을 표시하는 뷰
-    private let totalOrderText = UIStackView() // horizontal
-    var cartCount = 0
-    var totalPrice = 0
+    private let emptyStateLabel: UILabel = {
+        let label = UILabel()
+        label.text = "메뉴를 선택해주세요"
+        label.textAlignment = .center
+        label.textColor = .secondaryLabel
+        
+        label.font = Fonts.bascketNameFont()
+        
+        return label
+    }()
     
-    func setupOrderListView() {
-        noOrderText.text = "메뉴를 선택해 주세요"
-        noOrderText.textAlignment = .center
+    private let totalOrderView: UIView = {
+        let view = UIView()
+        view.backgroundColor = .systemBackground
         
-        setupTotalOrderText()
+        return view
+    }()
+    
+    private let countLabel: UILabel = {
+        let label = UILabel()
+        label.font = Fonts.remitCountFont()
         
-        [orderList, totalOrderText, noOrderText]
-            .forEach{ addSubview($0) }
+        return label
+    }()
+    
+    private let totalPriceLabel: UILabel = {
+        let label = UILabel()
+        label.font = Fonts.priceFont()
+        label.textAlignment = .right
         
-        noOrderText.snp.makeConstraints {
-            $0.top.equalToSuperview()
-            $0.width.equalToSuperview()
-        }
-        
-        orderList.snp.makeConstraints {
-            $0.top.equalToSuperview()
-            $0.width.equalToSuperview()
-            $0.bottom.equalToSuperview()
-        }
-        
-        totalOrderText.snp.makeConstraints {
-            $0.width.equalToSuperview()
-            $0.bottom.equalToSuperview()
-        }
-        
+        return label
+    }()
+    
+    var cartCount: Int = 0 { didSet {
+        updateCountLabel()
+    } }
+    
+    var totalPrice: Int = 0 { didSet {
+        updateTotalPriceLabel()
+    } }
+    
+    override init(frame: CGRect) {
+        super.init(frame: frame)
+        setupUI()
+        setupTableView()
     }
     
-    private func setupTotalOrderText() {
-        
-        let amountLabel = UILabel()
-        amountLabel.text = "\(cartCount)개/20개"
-        amountLabel.font = Fonts.sumCountFont()
-        amountLabel.textAlignment = .right
-        amountLabel.asColor(targetString: "\(cartCount)", color: .blue)
-
-        let priceLabel = UILabel()
-        priceLabel.text = "\(totalPrice)원"
-        priceLabel.font = Fonts.sumPrice()
-        priceLabel.textAlignment = .right
-        
-        totalOrderText.axis = .horizontal
-        
-        [amountLabel, priceLabel]
-            .forEach{ totalOrderText.addSubview($0) }
-        
-        priceLabel.snp.makeConstraints {
-            $0.right.equalToSuperview().inset(30)
-            $0.width.equalTo(100)
-            $0.height.equalToSuperview()
-        }
-        
-        amountLabel.snp.makeConstraints {
-            $0.right.equalTo(priceLabel.snp.left)
-            $0.width.equalTo(80)
-            $0.height.equalToSuperview()
-        }
-        
+    required init?(coder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
     }
-    private func updateCartLabel(itemCount: Int, totalPrice: Int) {
-        let text = "\(itemCount)개/20개 \(formatPrice(totalPrice))원"
+    
+    private func setupUI() {
+        backgroundColor = .systemBackground
         
-        // NSMutableAttributedString으로 텍스트 생성
-        let attributedText = NSMutableAttributedString(string: text)
+        addSubview(orderTableView)
+        addSubview(emptyStateLabel)
+        addSubview(totalOrderView)
+        totalOrderView.addSubview(countLabel)
+        totalOrderView.addSubview(totalPriceLabel)
         
-        // "X개" 부분의 범위 찾기
-        if let itemCountText = text.range(of: "\(itemCount)") {
-            let nsRange = NSRange(itemCountText, in: text)
-            attributedText.addAttribute(.foregroundColor, value: getItemCountColor(itemCount), range: nsRange)
-            attributedText.addAttribute(.font, value: Fonts.sumCountFont(), range: nsRange) // itemCount 폰트
+        orderTableView.snp.makeConstraints {
+            $0.top.leading.trailing.equalToSuperview()
+            $0.bottom.equalTo(totalOrderView.snp.top)
         }
         
-        // 색상 설정: "0개", "1~19개", "20개"
-        func getItemCountColor(_ itemCount: Int) -> UIColor {
-            switch itemCount {
-            case 0: return .black
-            case 1...19: return .blue
-            case 20: return .red
-            default: return .black
-            }
+        emptyStateLabel.snp.makeConstraints {
+            $0.center.equalTo(orderTableView)
         }
         
-        func formatPrice(_ price: Int) -> String {
-            let formatter = NumberFormatter()
-            formatter.numberStyle = .decimal
-            return formatter.string(from: NSNumber(value: price)) ?? "\(price)"
+        totalOrderView.snp.makeConstraints {
+            $0.leading.trailing.bottom.equalToSuperview()
+            $0.height.equalTo(44)
         }
+        
+        countLabel.snp.makeConstraints {
+            $0.leading.equalToSuperview().offset(16)
+            $0.centerY.equalToSuperview()
+        }
+        
+        totalPriceLabel.snp.makeConstraints {
+            $0.trailing.equalToSuperview().offset(-16)
+            $0.centerY.equalToSuperview()
+        }
+        
+        updateCountLabel()
+        updateTotalPriceLabel()
+    }
+    
+    private func setupTableView() {
+        orderTableView.delegate = self
+        orderTableView.dataSource = self
+        orderTableView.register(OrderListCell.self, forCellReuseIdentifier: OrderListCell.identifier)
+    }
+    
+    func addItem(_ product: Product) {
+        if !cart.addItem(product) {
+            delegate?.showMaxItemsAlert()
+            return
+        }
+        updateUI()
+    }
+    
+    func clearCart() {
+        cart.clear()
+        updateUI()
+    }
+    
+    private func updateUI() {
+        cartCount = cart.totalQuantity
+        totalPrice = cart.totalPrice
+        emptyStateLabel.isHidden = !cart.items.isEmpty
+        orderTableView.reloadData()
+    }
+    
+    private func updateCountLabel() {
+        let text = "총 \(cartCount)개/20개"
+        let attributedString = NSMutableAttributedString(string: text)
+        let range = (text as NSString).range(of: "\(cartCount)")
+        
+        let color: UIColor = cartCount == 20 ? .systemRed : cartCount == 0  ? .gray9 : .blue0
+        attributedString.addAttribute(.foregroundColor, value: color, range: range)
+        
+        let font = Fonts.sumCountFont()
+        attributedString.addAttribute(.font, value: font, range: range)
+        
+        countLabel.attributedText = attributedString
+    }
+    
+    private func updateTotalPriceLabel() {
+        let formatter = NumberFormatter()
+        formatter.numberStyle = .decimal
+        let priceString = formatter.string(from: NSNumber(value: totalPrice)) ?? "\(totalPrice)"
+        totalPriceLabel.text = "\(priceString)원"
     }
 }
 
-extension UILabel {
-    func asColor(targetString: String, color: UIColor) {
-            let fullText = text ?? ""
-            let attributedString = NSMutableAttributedString(string: fullText)
-            let range = (fullText as NSString).range(of: targetString)
-            attributedString.addAttribute(.foregroundColor, value: color, range: range)
-            attributedText = attributedString
+extension OrderList: UITableViewDataSource, UITableViewDelegate {
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        return cart.items.count
+    }
+    
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        guard let cell = tableView.dequeueReusableCell(withIdentifier: OrderListCell.identifier, for: indexPath) as? OrderListCell else {
+            return UITableViewCell()
         }
+        
+        let item = cart.items[indexPath.row]
+        cell.configure(cartItem: item, delegate: self)
+        return cell
+    }
+    
+    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+        return 44
+    }
+}
+
+extension OrderList: OrderListCellDelegate {
+    func increaseQuantity(for productId: String) {
+        guard let item = cart.items.first(where: { $0.product.id == productId }) else { return }
+        
+        if !cart.addItem(item.product) {
+            delegate?.showMaxItemsAlert()
+            return
+        }
+        updateUI()
+    }
+    
+    func decreaseQuantity(for productId: String) {
+        cart.decreaseQuantity(for: productId)
+        updateUI()
+    }
+    
+    func removeItem(productId: String) {
+        cart.removeItem(productId: productId)
+        updateUI()
+    }
 }
