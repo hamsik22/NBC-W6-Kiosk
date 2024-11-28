@@ -35,7 +35,6 @@ class KioskViewController: UIViewController, Observer {
     
     private let orderList: OrderList = {
         let view = OrderList()
-        view.backgroundColor = .blue
         return view
     }()
     
@@ -100,12 +99,16 @@ class KioskViewController: UIViewController, Observer {
 }
 
 extension KioskViewController: UITableViewDelegate, UITableViewDataSource {
+    
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        print("numberofSec\(tableView)")
+        // 메뉴리스트
         if tableView == self.tableView {
             return filteredMenuItems.count
         } else {
-            print(shoppingBasketItems.count)
+            // 주문내역
+            if shoppingBasketItems.count != 0 {
+                orderList.noOrderText.isHidden = true
+            }
             return shoppingBasketItems.count
         }
     }
