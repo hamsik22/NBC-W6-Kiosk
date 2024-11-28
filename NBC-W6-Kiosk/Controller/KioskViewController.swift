@@ -40,6 +40,7 @@ class KioskViewController: UIViewController, Observer {
         let view = OrderList()
         return view
     }()
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         // View가 그려지기 전에 json 데이터 디코팅 후 menu 모델에 저장
