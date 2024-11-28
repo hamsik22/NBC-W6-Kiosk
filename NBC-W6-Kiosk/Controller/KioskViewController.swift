@@ -141,7 +141,11 @@ extension KioskViewController: UITableViewDelegate, UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        return 100
+        if tableView == self.tableView {
+            return 112
+        } else {
+            return 24
+        }
     }
 }
 
