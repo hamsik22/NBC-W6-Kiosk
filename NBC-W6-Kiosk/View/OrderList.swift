@@ -41,12 +41,11 @@ class OrderList: UIView {
         orderList.snp.makeConstraints {
             $0.top.equalToSuperview()
             $0.width.equalToSuperview()
-            $0.bottom.equalTo(20)
+            $0.bottom.equalToSuperview()
         }
         
         totalOrderText.snp.makeConstraints {
             $0.width.equalToSuperview()
-            $0.height.equalTo(20)
             $0.bottom.equalToSuperview()
         }
         

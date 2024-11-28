@@ -15,7 +15,7 @@ class KioskViewController: UIViewController, Observer {
     private var filteredMenuItems: [Product] = []
     private var shoppingBasketItems: [Product] = [] {
         didSet {
-            print(shoppingBasketItems)
+            orderList.orderList.reloadData()
         }
     }
     
