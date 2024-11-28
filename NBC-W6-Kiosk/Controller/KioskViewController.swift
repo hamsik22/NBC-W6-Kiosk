@@ -6,13 +6,14 @@
 //  Updated by 김형석 on 11/27/24.
  
 import UIKit
-import SwiftUI
 
 class KioskViewController: UIViewController, Observer {
     var menu: Menu!
-    var shoppingBasket: ShoppingBasket!
+    // 결제완료 후 현재 화면에 보여지고있는 메뉴 tableView를 reload하기 위해 선언
+    var currentMenu: MenuCategory = .hot
     
-    private var filteredMenuItems: [DefaultProduct] = []
+    private var filteredMenuItems: [Product] = []
+    private var shoppingBasketItems: [Product] = []
     
     private let segmentedControl: UISegmentedControl = {
         let control = UISegmentedControl(items: MenuCategory.allCases.map { $0.rawValue })
@@ -30,15 +31,14 @@ class KioskViewController: UIViewController, Observer {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        menu = DefaultMenu()
+        menu = Menu()
+        // View가 그려지기 전에 json 데이터 디코팅 후 menu 모델에 저장
+        menu.list = decode(from: fetchDataFromJSONFile()!) ?? []
         menu.addObserver(self)
-        
-        shoppingBasket = DefaultShoppingBasket()
-        shoppingBasket.addObserver(self)
         
         setupUI()
         setupTableView()
-        menu.notifySelectedMenu(.coffee)
+        menu.notifySelectedMenu(currentMenu)
     }
     
     private func setupUI() {
@@ -70,16 +70,12 @@ class KioskViewController: UIViewController, Observer {
         let selectedCategory = MenuCategory.allCases[sender.selectedSegmentIndex]
         
         menu.notifySelectedMenu(selectedCategory)
+        currentMenu = selectedCategory
     }
     
-    func fetchMenu(_ filteredList: [DefaultProduct]) {
+    func fetchMenu(_ filteredList: [Product]) {
         filteredMenuItems = filteredList
         tableView.reloadData()
-    }
-    
-    func fetchShoppingBasket(_ list: [DefaultProduct]) {
-        // MARK: menuTableViewCell을 탭하면 shoppingBasket 모델에서 해당 상품을 등록하고 리스트를 전달인자로 넘겨줍니다.
-        // TODO: 장바구니에 보여질 상품 데이터들을 list 전달인자를 기반으로 구현하면 됩니다.
     }
 }
 
@@ -97,12 +93,42 @@ extension KioskViewController: UITableViewDelegate, UITableViewDataSource {
         return cell
     }
     
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        // 메뉴 tableViewCell이 탭 됐을 때 tableView의 indexPath.row를 사용해 선택된 Product를 filteredMenuItems에서 찾아 shoppingBasketItems에 추가
+        shoppingBasketItems.append(filteredMenuItems[indexPath.row])
+    }
+    
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         return 100
     }
 }
 
+extension KioskViewController {
+    
+    /// JSON 파일을 불러와 Data로 변환하는 함수
+    /// - Returns: JSON Data
+    private func fetchDataFromJSONFile() -> Data? {
+        guard let path = Bundle.main.path(forResource: "MenuData", ofType: "json") else { return nil }
+        guard let jsonString = try? String(contentsOfFile: path) else { return nil }
+        
+        return jsonString.data(using: .utf8)
+    }
+    
+    
+    /// JSON 파일 기반으로 변환된 데이터를 Product 구초체 형식으로 디코딩하는 함수
+    /// - Parameter data: JSON 데이터
+    /// - Returns: 구조체로 디코딩 된 Product 배열
+    private func decode(from data: Data) -> [Product]? {
+        guard let productList = try? JSONDecoder().decode([Product].self, from: data) else { return nil }
+        
+        return productList
+    }
+}
+
+
 #if DEBUG
+
+import SwiftUI
 
 struct KioskViewController_Preview: PreviewProvider {
     static var previews: some View {
