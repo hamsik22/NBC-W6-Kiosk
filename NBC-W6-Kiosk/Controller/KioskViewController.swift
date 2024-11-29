@@ -177,9 +177,17 @@ extension KioskViewController: BottomOrderViewDelegate {
             preferredStyle: .alert
         )
         
+        
         alert.addAction(UIAlertAction(title: "취소", style: .cancel))
         alert.addAction(UIAlertAction(title: "확인", style: .default) { [weak self] _ in
             self?.orderList.clearCart()
+            let alert = UIAlertController(
+                title: "주문번호 01번",
+                message: "결제가 완료되었습니다.",
+                preferredStyle: .alert
+            )
+            alert.addAction(UIAlertAction(title: "확인", style: .cancel))
+            self?.present(alert, animated: true)
         })
         
         present(alert, animated: true)
