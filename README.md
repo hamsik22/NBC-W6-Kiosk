@@ -2,6 +2,11 @@
 ## 앱 소개
 익숙한 화면과 메뉴들로 구성된 음료를 주문하는 **키오스크** 앱입니다!
 
+### 사용 스킬
+- **UIKit**
+- **SnapKit**
+- **SwiftUI**
+
 ## 와이어프레임
 <div>
 <img width="450" src="https://github.com/user-attachments/assets/24c47ac1-be70-441f-9f84-b4b008bc0eea">
