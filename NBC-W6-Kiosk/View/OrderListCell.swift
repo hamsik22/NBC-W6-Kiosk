@@ -11,6 +11,14 @@ class OrderListCell: UITableViewCell {
     
     static let identifier: String = "OrderListCell"
     
+    //delegate
+    weak var delegate: OrderListCellDelegate?
+
+    // Product 데이터를 저장하기 위한 프로퍼티
+    private var product: Product?
+    
+    let trashCanImage = UIImage(systemName: "trash")
+    
     private let containerView: UIView = {
         let view = UIView()
         view.translatesAutoresizingMaskIntoConstraints = false
@@ -30,7 +38,7 @@ class OrderListCell: UITableViewCell {
         return label
     }()
     
-    private let priceLabel: UILabel = {
+    var priceLabel: UILabel = {
         let label = UILabel()
         label.font = .systemFont(ofSize: 16, weight: .medium)
         label.textColor = UIColor(hue: 0, saturation: 0, brightness: 0.45, alpha: 1.0)
@@ -52,7 +60,7 @@ class OrderListCell: UITableViewCell {
         return view
     }()
         
-    private let selectLabel: UILabel = {
+    let selectLabel: UILabel = {
         let label = UILabel()
         label.font = .systemFont(ofSize: 16, weight: .medium)
         label.textColor = UIColor(hue: 0, saturation: 0, brightness: 0.45, alpha: 1.0)
@@ -61,16 +69,21 @@ class OrderListCell: UITableViewCell {
         return label
     }()
     
-    private let plusButton: UIButton = {
+    let plusButton: UIButton = {
         let button = UIButton()
+        button.tag = 1
         button.titleLabel?.font = UIFont.systemFont(ofSize: 16)
         button.setTitleColor(.black, for: .normal)
         button.translatesAutoresizingMaskIntoConstraints = false
         return button
     }()
     
-    private let minusButton: UIButton = {
+    let minusButton: UIButton = {
         let button = UIButton()
+        
+        //이미지로 쓰레기통 hidden
+        
+        button.tag = 0
         button.titleLabel?.font = UIFont.systemFont(ofSize: 16)
         button.setTitleColor(.black, for: .normal)
         button.translatesAutoresizingMaskIntoConstraints = false
@@ -80,6 +93,23 @@ class OrderListCell: UITableViewCell {
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
         setupUI()
+        
+        //버튼 delegate 연결
+        minusButton.addTarget(self, action: #selector(minusButtonDidTap), for: .touchUpInside)
+        plusButton.addTarget(self, action: #selector(plusButtonDidTap), for: .touchUpInside)
+    }
+    
+    //마이너스 버튼 delegate 연결
+    @objc func minusButtonDidTap() {
+        if let product = product { // product 값 전달
+            delegate?.minusButtonDidTap(in: self, product: product)
+        }
+    }
+    //플러스 버튼 delegate 연결
+    @objc func plusButtonDidTap() {
+        if let product = product { // product 값 전달
+            delegate?.plusButtonDidTap(in: self, product: product)
+        }
     }
     
     required init?(coder: NSCoder) {
@@ -128,11 +158,28 @@ class OrderListCell: UITableViewCell {
     }
      
     func configure(with item: Product) {
+        product = item
         nameLabel.text = item.name
-        priceLabel.text = "\(item.price)원"
+        
+        priceLabel.text = "\(item.selectedCount * item.price)원"
         plusButton.setTitle("+", for: .normal)
-        minusButton.setTitle("-", for: .normal)//TODO: 개수 0일 경우 쓰레기통 표시로 변경
-        selectLabel.text = "1" //TODO: 개수 동적으로 수정
+        
+        
+        if item.selectedCount > 1 {
+            minusButton.setTitle("-", for: .normal)
+            minusButton.setImage(nil, for: .normal)
+        } else {
+            minusButton.setTitle(nil, for: .normal)
+            minusButton.setImage(UIImage(systemName: "trash"), for: .normal)
+        }
+        
+        selectLabel.text = "\(item.selectedCount)"
     }
     
+}
+
+//프로토콜
+protocol OrderListCellDelegate: AnyObject {
+    func minusButtonDidTap(in cell: OrderListCell, product: Product)
+    func plusButtonDidTap(in cell: OrderListCell, product: Product)
 }

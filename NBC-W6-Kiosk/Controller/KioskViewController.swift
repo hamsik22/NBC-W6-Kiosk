@@ -19,6 +19,8 @@ class KioskViewController: UIViewController, Observer {
         }
     }
     
+    
+    
     private let segmentedControl: UISegmentedControl = {
         let control = UISegmentedControl(items: MenuCategory.allCases.map { $0.rawValue })
         control.selectedSegmentIndex = 0
@@ -50,6 +52,8 @@ class KioskViewController: UIViewController, Observer {
         setupTableView()
         menu.notifySelectedMenu(currentMenu)
     }
+    
+    
     
     private func setupUI() {
         view.backgroundColor = .gray0
@@ -101,11 +105,9 @@ class KioskViewController: UIViewController, Observer {
 
 extension KioskViewController: UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        print("numberofSec\(tableView)")
         if tableView == self.tableView {
             return filteredMenuItems.count
         } else {
-            print(shoppingBasketItems.count)
             return shoppingBasketItems.count
         }
     }
@@ -118,6 +120,10 @@ extension KioskViewController: UITableViewDelegate, UITableViewDataSource {
         } else if tableView == orderList.orderList {
             guard let cell = tableView.dequeueReusableCell(withIdentifier: OrderListCell.identifier, for: indexPath) as? OrderListCell else { return UITableViewCell() }
             cell.configure(with: shoppingBasketItems[indexPath.row])
+            
+            //버튼 동작을 위한 delegate 연결
+            cell.delegate = self
+            
             return cell
         } else {
             return UITableViewCell()
@@ -126,12 +132,32 @@ extension KioskViewController: UITableViewDelegate, UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         // 메뉴 tableViewCell이 탭 됐을 때 tableView의 indexPath.row를 사용해 선택된 Product를 filteredMenuItems에서 찾아 shoppingBasketItems에 추가
-        shoppingBasketItems.append(filteredMenuItems[indexPath.row])
+        
+        //선택된 메뉴 정보
+        var product = filteredMenuItems[indexPath.row]
+        
+        //장바구니가 비어있지 않고, 선택한 메뉴 id와 장바구니에 id가 일치하는 메뉴가 있는 경우
+        if !shoppingBasketItems.isEmpty, shoppingBasketItems.contains(where: { $0.id == product.id }) {
+            for i in 0..<shoppingBasketItems.count {
+                if shoppingBasketItems[i].id == product.id {
+                    shoppingBasketItems[i].selectedCount += 1
+                    break
+                }
+            }
+            // 일치하는 메뉴가 없을때 append
+        } else {
+            product.selectedCount = 1
+            shoppingBasketItems.append(product)
+        }
+        
     }
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         return 100
     }
+    
+    
+    
 }
 
 extension KioskViewController {
@@ -157,6 +183,59 @@ extension KioskViewController {
 }
 
 
+extension KioskViewController: OrderListCellDelegate {
+
+    //장바구니 마이너스 버튼
+    func minusButtonDidTap(in cell: OrderListCell, product: Product) {
+        let id = product.id
+        
+        for i in 0..<shoppingBasketItems.count {
+            if shoppingBasketItems[i].id == id {
+                
+                //항목의 개수가 1보다 클 경우 count -1
+                if shoppingBasketItems[i].selectedCount > 1 {
+                    shoppingBasketItems[i].selectedCount -= 1
+                    cell.priceLabel.text = String(shoppingBasketItems[i].selectedCount * shoppingBasketItems[i].price)
+                    orderList.orderList.reloadData()
+                } else {//항목의 개수가 1일 경우 해당 셀 삭제
+
+                    guard let indexPath = orderList.orderList.indexPath(for: cell) else { return }
+                    
+                    // 데이터 소스에서 항목을 삭제
+                    shoppingBasketItems.remove(at: indexPath.row)
+                    
+                    // 데이터가 삭제된 후, 유효한 indexPath가 있는지 확인
+                    if indexPath.row < shoppingBasketItems.count {
+                        tableView.deleteRows(at: [indexPath], with: .automatic)
+                    } else {
+                        print("Invalid indexPath after deletion")
+                    }
+                    
+                    
+                }
+            }
+        }
+    }
+    
+    //장바구니 플러스 버튼
+    func plusButtonDidTap(in cell: OrderListCell, product: Product) {
+        let id = product.id
+        
+        for i in 0..<shoppingBasketItems.count {
+            if shoppingBasketItems[i].id == id {
+                shoppingBasketItems[i].selectedCount += 1
+                cell.priceLabel.text = String(shoppingBasketItems[i].selectedCount * shoppingBasketItems[i].price)
+                orderList.orderList.reloadData()
+            }
+        }
+    }
+    
+    
+}
+
+
+
+
 #if DEBUG
 
 import SwiftUI
@@ -177,3 +256,6 @@ struct KioskViewController_Preview: PreviewProvider {
 }
 
 #endif
+
+
+
