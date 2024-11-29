@@ -47,7 +47,7 @@ class OrderList: UIView {
     
     private let totalPriceLabel: UILabel = {
         let label = UILabel()
-        label.font = Fonts.priceFont()
+        label.font = Fonts.sumPrice()
         label.textAlignment = .right
         
         return label
@@ -94,13 +94,14 @@ class OrderList: UIView {
             $0.height.equalTo(44)
         }
         
-        countLabel.snp.makeConstraints {
-            $0.leading.equalToSuperview().offset(16)
-            $0.centerY.equalToSuperview()
-        }
-        
         totalPriceLabel.snp.makeConstraints {
             $0.trailing.equalToSuperview().offset(-16)
+            $0.centerY.equalToSuperview()
+            $0.width.equalTo(85) // 너비를 85로 설정
+        }
+        
+        countLabel.snp.makeConstraints {
+            $0.trailing.equalTo(totalPriceLabel.snp.leading).offset(-16)
             $0.centerY.equalToSuperview()
         }
         
@@ -156,7 +157,7 @@ class OrderList: UIView {
     }
 }
 
-extension OrderList: UITableViewDataSource, UITableViewDelegate {
+extension OrderList: UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return cart.items.count
     }
@@ -168,6 +169,14 @@ extension OrderList: UITableViewDataSource, UITableViewDelegate {
         
         let item = cart.items[indexPath.row]
         cell.configure(cartItem: item, delegate: self)
+        
+        // 첫 번째 셀 부분 상품리스트에 16여백주기
+        if indexPath.row == 0 {
+            cell.contentView.layoutMargins = UIEdgeInsets(top: 16, left: 0, bottom: 0, right: 0)
+        } else {
+            cell.contentView.layoutMargins = .zero
+        }
+        
         return cell
     }
     
@@ -175,6 +184,7 @@ extension OrderList: UITableViewDataSource, UITableViewDelegate {
         return 44
     }
 }
+
 
 extension OrderList: OrderListCellDelegate {
     func increaseQuantity(for productId: String) {
