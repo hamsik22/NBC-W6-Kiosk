@@ -16,6 +16,14 @@ class MenuItemCell: UITableViewCell {
         return view
     }()
     
+    private let soldOutImageView: UIImageView = {
+            let imageView = UIImageView()
+            imageView.image = UIImage(named: "SoldOut")
+            imageView.isHidden = true
+            imageView.translatesAutoresizingMaskIntoConstraints = false
+            return imageView
+        }()
+    
     private let itemImageView: UIImageView = {
         let imageView = UIImageView()
         imageView.backgroundColor = .gray2
@@ -27,23 +35,26 @@ class MenuItemCell: UITableViewCell {
     
     private let nameLabel: UILabel = {
         let label = UILabel()
-        label.font = .systemFont(ofSize: 16, weight: .medium)
+        label.font = Fonts.nameFont()
         label.translatesAutoresizingMaskIntoConstraints = false
+        
         return label
     }()
     
     private let englishNameLabel: UILabel = {
         let label = UILabel()
-        label.font = .systemFont(ofSize: 14)
+        label.font = Fonts.englishNameFont()
         label.textColor = .gray2
         label.translatesAutoresizingMaskIntoConstraints = false
+        
         return label
     }()
     
     private let priceLabel: UILabel = {
         let label = UILabel()
-        label.font = .systemFont(ofSize: 16, weight: .medium)
+        label.font = Fonts.priceFont()
         label.translatesAutoresizingMaskIntoConstraints = false
+        
         return label
     }()
     
@@ -62,6 +73,7 @@ class MenuItemCell: UITableViewCell {
         containerView.addSubview(nameLabel)
         containerView.addSubview(englishNameLabel)
         containerView.addSubview(priceLabel)
+        containerView.addSubview(soldOutImageView)
         
         NSLayoutConstraint.activate([
             containerView.topAnchor.constraint(equalTo: contentView.topAnchor, constant: 8),
@@ -73,6 +85,11 @@ class MenuItemCell: UITableViewCell {
             itemImageView.centerYAnchor.constraint(equalTo: containerView.centerYAnchor),
             itemImageView.widthAnchor.constraint(equalToConstant: 80),
             itemImageView.heightAnchor.constraint(equalToConstant: 80),
+            
+            soldOutImageView.centerYAnchor.constraint(equalTo: containerView.centerYAnchor),
+            soldOutImageView.trailingAnchor.constraint(equalTo: containerView.trailingAnchor, constant: -16),
+            soldOutImageView.widthAnchor.constraint(equalToConstant: 89),
+            soldOutImageView.heightAnchor.constraint(equalToConstant: 38),
             
             nameLabel.topAnchor.constraint(equalTo: containerView.topAnchor, constant: 12),
             nameLabel.leadingAnchor.constraint(equalTo: itemImageView.trailingAnchor, constant: 16),
@@ -89,6 +106,22 @@ class MenuItemCell: UITableViewCell {
         nameLabel.text = item.name
         englishNameLabel.text = item.englishName
         priceLabel.text = "\(item.price)원"
-        // TODO: item.stock == 0일때 sould out 표시 구현해주면 됩니다.
+        itemImageView.image = UIImage(named: item.thumbnailImageString)
+        
+        if item.stock == 0 {
+            soldOutImageView.isHidden = false
+            isUserInteractionEnabled = false
+            itemImageView.alpha = 0.4
+            nameLabel.alpha = 0.4
+            englishNameLabel.alpha = 0.4
+            priceLabel.alpha = 0.4
+        } else {
+            soldOutImageView.isHidden = true
+            isUserInteractionEnabled = true
+            itemImageView.alpha = 1.0
+            nameLabel.alpha = 1.0
+            englishNameLabel.alpha =  1.0
+            priceLabel.alpha = 1.0
+        }
     }
 }

@@ -27,6 +27,7 @@ struct Product: Decodable {
         case selectedCount
     }
     
+    //TODO: JSON 데이터면 구조체 생성, 별도의 구조체에 id, selectedCount
     init(from decoder: any Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
         self.id = UUID().uuidString // Decodable로 인스턴스 생성시 UUID 할당
