@@ -16,7 +16,6 @@ class OrderListCell: UITableViewCell {
     private let nameLabel: UILabel = {
         let label = UILabel()
         label.font = Fonts.bascketNameFont()
-        label.translatesAutoresizingMaskIntoConstraints = false
         
         return label
     }()
@@ -25,7 +24,6 @@ class OrderListCell: UITableViewCell {
         let label = UILabel()
         label.font = Fonts.bascketPriceFont()
         label.textColor = .gray2
-        label.translatesAutoresizingMaskIntoConstraints = false
         
         return label
     }()

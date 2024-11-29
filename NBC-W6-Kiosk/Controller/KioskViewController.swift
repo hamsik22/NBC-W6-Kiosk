@@ -19,7 +19,6 @@ class KioskViewController: UIViewController, Observer {
     private let segmentedControl: UISegmentedControl = {
         let control = UISegmentedControl(items: MenuCategory.allCases.map { $0.rawValue })
         control.selectedSegmentIndex = 0
-        control.translatesAutoresizingMaskIntoConstraints = false
         
         return control
     }()
@@ -27,7 +26,6 @@ class KioskViewController: UIViewController, Observer {
     private let tableView: UITableView = {
         let tableView = UITableView()
         tableView.separatorStyle = .none
-        tableView.translatesAutoresizingMaskIntoConstraints = false
         
         return tableView
     }()
@@ -83,13 +81,13 @@ class KioskViewController: UIViewController, Observer {
         
         orderList.snp.makeConstraints {
             $0.leading.trailing.equalToSuperview()
-            $0.bottom.equalTo(bottomOrderView.snp.top)
-            $0.height.equalTo(300)
+            $0.bottom.equalTo(bottomOrderView.snp.top).inset(-16)
+            $0.height.equalTo(260)
         }
         
         bottomOrderView.snp.makeConstraints {
             $0.leading.trailing.equalToSuperview()
-            $0.bottom.equalTo(view.safeAreaLayoutGuide)
+            $0.bottom.equalTo(view.safeAreaLayoutGuide).inset(8)
             $0.height.equalTo(57)
         }
     }
@@ -156,6 +154,7 @@ extension KioskViewController: OrderListDelegate {
 // MARK: - OrderButton Delegate
 extension KioskViewController: BottomOrderViewDelegate {
     func cancelButtonDidTap() {
+        guard let _ = orderList.orderTableView.cellForRow(at: IndexPath(row: 0, section: 0)) else { return }
         let alert = UIAlertController(
             title: "주문 취소",
             message: "장바구니를 비우시겠습니까?",
@@ -171,6 +170,7 @@ extension KioskViewController: BottomOrderViewDelegate {
     }
     
     func orderButtonDidTap() {
+        guard let _ = orderList.orderTableView.cellForRow(at: IndexPath(row: 0, section: 0)) else { return }
         let alert = UIAlertController(
             title: "결제 확인",
             message: "결제를 진행하시겠습니까?",
