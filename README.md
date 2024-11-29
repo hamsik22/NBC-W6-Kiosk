@@ -37,6 +37,7 @@
 - `Ver:0.0.1` : 초기버전
 
 # 시연 영상
+
 <div>
-<img width="200" src="https://github.com/user-attachments/assets/c74e4e21-0230-42d6-a4a1-c79d4e45dd13">
+<img width="200" src="https://github.com/user-attachments/assets/4a717c08-5c59-452f-b5ac-cab553057e46">
 </div>
