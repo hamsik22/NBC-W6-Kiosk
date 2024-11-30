@@ -6,6 +6,9 @@
 - **UIKit**
 - **SnapKit**
 - **SwiftUI**
+- **Observer** 패턴
+- **Figma**
+- **Git**
 
 ## 와이어프레임
 <div>
