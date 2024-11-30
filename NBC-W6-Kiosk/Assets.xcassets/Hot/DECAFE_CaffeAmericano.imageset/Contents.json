@@ -1,0 +1,23 @@
+{
+  "images" : [
+    {
+      "filename" : "DECAFE_CaffeAmericano.png",
+      "idiom" : "universal",
+      "scale" : "1x"
+    },
+    {
+      "filename" : "DECAFE_CaffeAmericano@2x.png",
+      "idiom" : "universal",
+      "scale" : "2x"
+    },
+    {
+      "filename" : "DECAFE_CaffeAmericano@3x.png",
+      "idiom" : "universal",
+      "scale" : "3x"
+    }
+  ],
+  "info" : {
+    "author" : "xcode",
+    "version" : 1
+  }
+}
